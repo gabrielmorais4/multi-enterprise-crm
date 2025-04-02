@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { User, CreditCard, BuildingIcon, Users, Lock, Mail, CheckCircle } from 'lucide-react';
+import { User, CreditCard, BuildingIcon, Users, Lock, Mail, CheckCircle, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
@@ -13,6 +13,31 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
+
+// Define mockCompanies data
+const mockCompanies = [
+  {
+    id: '1',
+    name: 'Empresa ABC',
+    plan: 'Premium',
+    users: 12,
+    products: 156
+  },
+  {
+    id: '2',
+    name: 'Indústria XYZ',
+    plan: 'Básico',
+    users: 5,
+    products: 32
+  },
+  {
+    id: '3',
+    name: 'Comércio 123',
+    plan: 'Standard',
+    users: 8,
+    products: 67
+  }
+];
 
 const Settings: React.FC = () => {
   const navigate = useNavigate();
