@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
-import { Cube } from 'lucide-react';
+import { CubeIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { useToast } from 'sonner';
+import { toast } from 'sonner';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +12,6 @@ const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
-  const toast = useToast;
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +33,7 @@ const Login: React.FC = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
             <div className="bg-gestao-blue p-3 rounded-lg inline-flex">
-              <Cube className="h-8 w-8 text-white" />
+              <CubeIcon className="h-8 w-8 text-white" />
             </div>
           </div>
           <h1 className="text-3xl font-bold">GestãoPro</h1>

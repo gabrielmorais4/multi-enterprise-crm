@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
-import { Plus, Search } from 'lucide-react';
+import { Plus, Search, CubeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CompanyCard } from '@/components/ui/company-card';
 import { useNavigate } from 'react-router-dom';
-import { Cube } from 'lucide-react';
 
 // Sample company data
 const mockCompanies = [
@@ -34,7 +32,7 @@ const SelectCompany: React.FC = () => {
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Cube className="h-6 w-6 text-gestao-blue" />
+            <CubeIcon className="h-6 w-6 text-gestao-blue" />
             <span className="font-bold text-xl">GestãoPro</span>
           </div>
           <Button variant="ghost" onClick={() => navigate('/login')}>

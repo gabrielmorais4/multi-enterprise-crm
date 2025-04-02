@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, CubeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PlanCard } from '@/components/ui/plan-card';
 import { useNavigate } from 'react-router-dom';
-import { Cube } from 'lucide-react';
-import { useToast } from 'sonner';
+import { toast } from 'sonner';
 
 // Sample plan data
 const plans = [
@@ -56,7 +54,6 @@ const SelectPlan: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
-  const toast = useToast;
 
   const handleSelectPlan = (planName: string) => {
     setSelectedPlan(planName);
@@ -82,7 +79,7 @@ const SelectPlan: React.FC = () => {
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Cube className="h-6 w-6 text-gestao-blue" />
+            <CubeIcon className="h-6 w-6 text-gestao-blue" />
             <span className="font-bold text-xl">GestãoPro</span>
           </div>
           <Button variant="ghost" onClick={() => navigate('/login')}>
