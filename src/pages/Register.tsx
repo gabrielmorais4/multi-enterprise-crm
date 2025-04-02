@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Box, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Box, Mail, Lock, User, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,26 +8,36 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from 'sonner';
 import { Separator } from '@/components/ui/separator';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      toast.error("As senhas não coincidem", {
+        description: "Por favor, verifique e tente novamente."
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
-    // Simulate login process
+    // Simulate registration process
     setTimeout(() => {
       setIsLoading(false);
-      navigate('/select-company');
-      toast("Login realizado com sucesso", {
-        description: "Bem-vindo de volta ao GestãoPro!"
+      navigate('/create-company');
+      toast.success("Registro realizado com sucesso", {
+        description: "Bem-vindo ao GestãoPro! Vamos configurar sua empresa."
       });
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -41,19 +51,49 @@ const Login: React.FC = () => {
           </div>
           <h1 className="text-3xl font-bold">GestãoPro</h1>
           <p className="text-gestao-text mt-2">
-            Gerencie seus clientes e estoque em um só lugar
+            Crie sua conta e comece a gerenciar seu negócio
           </p>
         </div>
 
         <Card className="shadow-lg border-gestao-gray/20">
           <CardHeader>
-            <CardTitle>Acesse sua conta</CardTitle>
-            <CardDescription>
-              Digite suas credenciais para acessar o sistema
-            </CardDescription>
+            <div className="flex items-center">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="mr-2 -ml-2" 
+                onClick={() => navigate('/login')}
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+              <div>
+                <CardTitle>Criar nova conta</CardTitle>
+                <CardDescription>
+                  Preencha os dados abaixo para se registrar
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleRegister}>
             <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="name">
+                  Nome completo
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Seu nome completo"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+              
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="email">
                   Email
@@ -71,24 +111,22 @@ const Login: React.FC = () => {
                   />
                 </div>
               </div>
+              
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium" htmlFor="password">
-                    Senha
-                  </label>
-                  <Link to="/forgot-password" className="text-sm text-gestao-blue hover:underline">
-                    Esqueceu a senha?
-                  </Link>
-                </div>
+                <label className="text-sm font-medium" htmlFor="password">
+                  Senha
+                </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
+                    placeholder="Mínimo 8 caracteres"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10"
                     required
+                    minLength={8}
                   />
                   <button 
                     type="button"
@@ -99,10 +137,28 @@ const Login: React.FC = () => {
                   </button>
                 </div>
               </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="confirmPassword">
+                  Confirmar senha
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+                  <Input
+                    id="confirmPassword"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Confirme sua senha"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Entrando...' : 'Entrar'}
+                {isLoading ? 'Criando conta...' : 'Criar conta'}
               </Button>
               
               <div className="flex items-center w-full">
@@ -112,9 +168,9 @@ const Login: React.FC = () => {
               </div>
               
               <p className="text-center text-sm">
-                Não tem uma conta?{' '}
-                <Link to="/register" className="text-gestao-blue hover:underline font-medium">
-                  Registre-se
+                Já tem uma conta?{' '}
+                <Link to="/login" className="text-gestao-blue hover:underline font-medium">
+                  Faça login
                 </Link>
               </p>
             </CardFooter>
@@ -125,4 +181,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

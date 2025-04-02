@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Building, Users, Package } from 'lucide-react';
+import { Building, Users, Package, Edit, CreditCard } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 export interface CompanyCardProps {
   id: string;
@@ -54,6 +55,23 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({
             </Badge>
           </div>
         </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Edit size={16} />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => navigate(`/company-settings/${id}`)}>
+              <Edit className="mr-2 h-4 w-4" />
+              <span>Editar empresa</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/select-plan')}>
+              <CreditCard className="mr-2 h-4 w-4" />
+              <span>Gerenciar assinatura</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       
       <div className="grid grid-cols-2 gap-4 mb-6">
