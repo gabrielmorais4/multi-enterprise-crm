@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { CubeIcon } from 'lucide-react';
+import { Box } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,7 +34,7 @@ const Login: React.FC = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
             <div className="bg-gestao-blue p-3 rounded-lg inline-flex">
-              <CubeIcon className="h-8 w-8 text-white" />
+              <Box className="h-8 w-8 text-white" />
             </div>
           </div>
           <h1 className="text-3xl font-bold">GestãoPro</h1>

@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { ArrowLeft, CubeIcon } from 'lucide-react';
+import { ArrowLeft, Box } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PlanCard } from '@/components/ui/plan-card';
 import { useNavigate } from 'react-router-dom';
@@ -79,7 +80,7 @@ const SelectPlan: React.FC = () => {
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <CubeIcon className="h-6 w-6 text-gestao-blue" />
+            <Box className="h-6 w-6 text-gestao-blue" />
             <span className="font-bold text-xl">GestãoPro</span>
           </div>
           <Button variant="ghost" onClick={() => navigate('/login')}>
