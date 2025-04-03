@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
+import VerifyEmail from "./pages/VerifyEmail";
+import ResetPassword from "./pages/ResetPassword";
 import SelectCompany from "./pages/SelectCompany";
 import CreateCompany from "./pages/CreateCompany";
 import SelectPlan from "./pages/SelectPlan";
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/select-company" element={<SelectCompany />} />
           <Route path="/create-company" element={<CreateCompany />} />
           <Route path="/select-plan" element={<SelectPlan />} />

@@ -33,9 +33,10 @@ const Register: React.FC = () => {
     // Simulate registration process
     setTimeout(() => {
       setIsLoading(false);
-      navigate('/create-company');
-      toast.success("Registro realizado com sucesso", {
-        description: "Bem-vindo ao GestãoPro! Vamos configurar sua empresa."
+      // Navigate to verification page with email in state
+      navigate('/verify-email', { state: { email } });
+      toast.success("Cadastro iniciado", {
+        description: "Enviamos um código de verificação para seu email."
       });
     }, 1500);
   };

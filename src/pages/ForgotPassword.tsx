@@ -28,6 +28,11 @@ const ForgotPassword: React.FC = () => {
     }, 1500);
   };
 
+  const handleDemoReset = () => {
+    // This is just for demo purposes to allow testing the reset password page
+    navigate('/reset-password?token=demo-token');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gestao-blue/10 to-gestao-gray/20 p-4">
       <div className="w-full max-w-md">
@@ -109,6 +114,16 @@ const ForgotPassword: React.FC = () => {
               >
                 {isLoading ? 'Enviando...' : 'Reenviar email'}
               </Button>
+              
+              {/* This button is only for demo purposes */}
+              <Button 
+                variant="link" 
+                className="w-full" 
+                onClick={handleDemoReset}
+              >
+                Demonstração: Ir para a página de redefinição
+              </Button>
+              
               <Button 
                 variant="link" 
                 className="w-full" 
