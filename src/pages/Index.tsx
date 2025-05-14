@@ -8,14 +8,14 @@ import { Mail } from 'lucide-react';
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
-  const [isEmailVerified, setIsEmailVerified] = useState(true);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [resendingEmail, setResendingEmail] = useState(false);
 
   useEffect(() => {
     // Simulate checking email verification status
     // In a real application, this would come from your authentication system
     const checkEmailVerification = () => {
-      // For demo purposes, randomly set verification status
+      // For demo purposes, we've set the default to false
       // In production, you would check actual verification status
       setIsEmailVerified(false);
     };
